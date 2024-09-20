@@ -38,7 +38,7 @@ RUN mkdir -p /var/www/html/data/cache \
     /var/www/html/public/imgs-client/upload
 
 # Set permissions for the storage and cache directories
-RUN chown -R www-data:www-data /var/www/html/data /var/www/html/cache \
+RUN chown -R www-data:www-data /var/www/html/data/cache \
     /var/www/html/data/log \
     /var/www/html/data/session \
     /var/www/html/public/docs-client/upload \
