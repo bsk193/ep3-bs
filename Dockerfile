@@ -16,9 +16,10 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     git \
+    libicu-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd \
-    && docker-php-ext-install mysqli pdo pdo_mysql zip
+    && docker-php-ext-install mysqli pdo pdo_mysql zip intl
 
 # Download Zend Framework
 RUN curl -L https://github.com/zendframework/zendframework/archive/refs/heads/master.zip -o zendframework.zip \
