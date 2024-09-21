@@ -141,53 +141,53 @@ class EditForm extends Form
         ));
 
         $this->add(array(
-            'name' => 'cf-time-startweek',
+            'name' => 'cf-time-start',
             'type' => 'Text',
             'attributes' => array(
-                'id' => 'cf-time-startweek',
+                'id' => 'cf-time-start',
                 'style' => 'width: 80px;',
             ),
             'options' => array(
-                'label' => 'Time (Start Week)',
+                'label' => 'Time (Start)',
                 'postfix' => 'Clock',
             ),
         ));
 
         $this->add(array(
-            'name' => 'cf-time-endweek',
+            'name' => 'cf-time-end',
             'type' => 'Text',
             'attributes' => array(
-                'id' => 'cf-time-endweek',
+                'id' => 'cf-time-end',
                 'style' => 'width: 80px;',
             ),
             'options' => array(
-                'label' => 'Time (End Week)',
+                'label' => 'Time (End)',
                 'postfix' => 'Clock',
             ),
         ));
 
         $this->add(array(
-            'name' => 'cf-time-startweekend',
+            'name' => 'cf-time-startwknd',
             'type' => 'Text',
             'attributes' => array(
-                'id' => 'cf-time-startweekend',
+                'id' => 'cf-time-start',
                 'style' => 'width: 80px;',
             ),
             'options' => array(
-                'label' => 'Time (Start Weekend)',
+                'label' => 'Time (Start W)',
                 'postfix' => 'Clock',
             ),
         ));
 
         $this->add(array(
-            'name' => 'cf-time-endweekend',
+            'name' => 'cf-time-endwknd',
             'type' => 'Text',
             'attributes' => array(
-                'id' => 'cf-time-endweekend',
+                'id' => 'cf-time-end',
                 'style' => 'width: 80px;',
             ),
             'options' => array(
-                'label' => 'Time (End Weekend)',
+                'label' => 'Time (End W)',
                 'postfix' => 'Clock',
             ),
         ));
@@ -387,7 +387,7 @@ class EditForm extends Form
             'cf-name-visibility' => array(
                 'required' => false,
             ),
-            'cf-time-startweek' => array(
+            'cf-time-start' => array(
                 'filters' => array(
                     array('name' => 'StringTrim'),
                 ),
@@ -408,49 +408,7 @@ class EditForm extends Form
                     ),
                 ),
             ),
-            'cf-time-endweek' => array(
-                'filters' => array(
-                    array('name' => 'StringTrim'),
-                ),
-                'validators' => array(
-                    array(
-                        'name' => 'NotEmpty',
-                        'options' => array(
-                            'message' => 'Please type something here',
-                        ),
-                        'break_chain_on_failure' => true,
-                    ),
-                    array(
-                        'name' => 'Regex',
-                        'options' => array(
-                            'pattern' => '/^[0-9][0-9]:[0-9][0-9]$/',
-                            'message' => 'Please provide the time in format HH:MM',
-                        ),
-                    ),
-                ),
-            ),
-            'cf-time-startweekend' => array(
-                'filters' => array(
-                    array('name' => 'StringTrim'),
-                ),
-                'validators' => array(
-                    array(
-                        'name' => 'NotEmpty',
-                        'options' => array(
-                            'message' => 'Please type something here',
-                        ),
-                        'break_chain_on_failure' => true,
-                    ),
-                    array(
-                        'name' => 'Regex',
-                        'options' => array(
-                            'pattern' => '/^[0-9][0-9]:[0-9][0-9]$/',
-                            'message' => 'Please provide the time in format HH:MM',
-                        ),
-                    ),
-                ),
-            ),
-            'cf-time-endweekend' => array(
+            'cf-time-end' => array(
                 'filters' => array(
                     array('name' => 'StringTrim'),
                 ),

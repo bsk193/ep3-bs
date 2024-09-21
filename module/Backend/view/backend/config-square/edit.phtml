@@ -49,10 +49,10 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
             <?= $this->formRowCheckbox($form, 'cf-capacity-heterogenic') ?>
             <?= $this->formRowCheckbox($form, 'cf-allow-notes') ?>
             <?= $this->formRowDefault($form, 'cf-name-visibility') ?>
-            <?= $this->formRowDefault($form, 'cf-time-startweek') ?>
-            <?= $this->formRowDefault($form, 'cf-time-endweek') ?>
-            <?= $this->formRowDefault($form, 'cf-time-startweekend') ?>
-            <?= $this->formRowDefault($form, 'cf-time-endweekend') ?>
+            <?= $this->formRowDefault($form, 'cf-time-start') ?>
+            <?= $this->formRowDefault($form, 'cf-time-end') ?>
+            <?= $this->formRowDefault($form, 'cf-time-startwknd') ?>
+            <?= $this->formRowDefault($form, 'cf-time-endwknd') ?>
             <?= $this->formRowDefault($form, 'cf-time-block') ?>
             <?= $this->formRowDefault($form, 'cf-time-block-bookable') ?>
             <?= $this->formRowCheckbox($form, 'cf-pseudo-time-block-bookable') ?>
