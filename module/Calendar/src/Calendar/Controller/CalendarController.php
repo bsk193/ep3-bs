@@ -84,6 +84,8 @@ class CalendarController extends AbstractActionController
         $dateEnd->setTime(23, 59, 59);
         $dateNow = new DateTime();
 
+        var_dump($dateNow);
+
         $timeStart = $squareManager->getMinStartTime();
         $timeEnd = $squareManager->getMaxEndTime();
         $timeBlock = $squareManager->getMinTimeBlock();
