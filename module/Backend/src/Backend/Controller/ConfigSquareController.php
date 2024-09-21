@@ -28,6 +28,7 @@ class ConfigSquareController extends AbstractActionController
         $serviceManager = @$this->getServiceLocator();
         $squareManager = $serviceManager->get('Square\Manager\SquareManager');
         $formElementManager = $serviceManager->get('FormElementManager');
+        $dayOfWeek = date('N'); // 1 (for Monday) through 7 (for Sunday)
 
 	    $locale = $this->config('i18n.locale');
 
@@ -61,8 +62,15 @@ class ConfigSquareController extends AbstractActionController
                 $square->setMeta('private_names', $editData['cf-name-visibility'] == 'private' ? 'true' : 'false');
                 $square->setMeta('public_names', $editData['cf-name-visibility'] == 'public' ? 'true' : 'false');
                 $square->set('allow_notes', $editData['cf-allow-notes']);
-                $square->set('time_start', $editData['cf-time-start']);
-                $square->set('time_end', $editData['cf-time-end']);
+                if ($dayOfWeek >= 1 && $dayOfWeek <= 5) {
+                    // Weekday
+                    $square->set('time_start', $editData['cf-time-startweek']);
+                    $square->set('time_end', $editData['cf-time-endweek']);
+                } else {
+                    // Weekend
+                    $square->set('time_start', $editData['cf-time-startweekend']);
+                    $square->set('time_end', $editData['cf-time-endweekend']);
+                }
                 $square->set('time_block', max($editData['cf-time-block'], 10) * 60);
                 $square->set('time_block_bookable', max($editData['cf-time-block-bookable'], 10) * 60);
                 $square->setMeta('pseudo-time-block-bookable', $editData['cf-pseudo-time-block-bookable'] ? 'true' : 'false');
@@ -92,6 +100,16 @@ class ConfigSquareController extends AbstractActionController
                     $nameVisibility = null;
                 }
 
+                if ($dayOfWeek >= 1 && $dayOfWeek <= 5) {
+                    // Weekday
+                    $timeEnd = substr($square->get('cf-time-endweek'), 0, 5);
+                    $timeBlock = round($square->get('cf-time-blockweek') / 60);
+                } else {
+                    // Weekend
+                    $timeEnd = substr($square->get('cf-time-endweekend'), 0, 5);
+                    $timeBlock = round($square->get('cf-time-blockweekend') / 60);
+                }
+
                 $editForm->setData(array(
                     'cf-name' => $square->get('name'),
                     'cf-status' => $square->get('status'),
@@ -102,8 +120,6 @@ class ConfigSquareController extends AbstractActionController
                     'cf-capacity-heterogenic' => $square->get('capacity_heterogenic'),
                     'cf-name-visibility' => $nameVisibility,
                     'cf-allow-notes' => $square->get('allow_notes'),
-                    'cf-time-start' => substr($square->get('time_start'), 0, 5),
-                    'cf-time-end' => substr($square->get('time_end'), 0, 5),
                     'cf-time-block' => round($square->get('time_block') / 60),
                     'cf-time-block-bookable' => round($square->get('time_block_bookable') / 60),
                     'cf-pseudo-time-block-bookable' => $square->getMeta('pseudo-time-block-bookable', 'false') == 'true',
@@ -121,8 +137,10 @@ class ConfigSquareController extends AbstractActionController
                     'cf-capacity' => 1,
                     'cf-capacity-heterogenic' => false,
                     'cf-allow-notes' => false,
-                    'cf-time-start' => '08:00',
-                    'cf-time-end' => '23:00',
+                    'cf-time-startweek' => '08:00',
+                    'cf-time-endweek' => '23:00',
+                    'cf-time-startweekend' => '08:00',
+                    'cf-time-endweekend' => '23:00',
                     'cf-time-block' => 60,
                     'cf-time-block-bookable' => 30,
                     'cf-pseudo-time-block-bookable' => false,

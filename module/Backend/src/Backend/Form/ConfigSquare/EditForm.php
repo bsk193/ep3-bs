@@ -141,27 +141,53 @@ class EditForm extends Form
         ));
 
         $this->add(array(
-            'name' => 'cf-time-start',
+            'name' => 'cf-time-startweek',
             'type' => 'Text',
             'attributes' => array(
-                'id' => 'cf-time-start',
+                'id' => 'cf-time-startweek',
                 'style' => 'width: 80px;',
             ),
             'options' => array(
-                'label' => 'Time (Start)',
+                'label' => 'Time (Start Week)',
                 'postfix' => 'Clock',
             ),
         ));
 
         $this->add(array(
-            'name' => 'cf-time-end',
+            'name' => 'cf-time-endweek',
             'type' => 'Text',
             'attributes' => array(
-                'id' => 'cf-time-end',
+                'id' => 'cf-time-endweek',
                 'style' => 'width: 80px;',
             ),
             'options' => array(
-                'label' => 'Time (End)',
+                'label' => 'Time (End Week)',
+                'postfix' => 'Clock',
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'cf-time-startweekend',
+            'type' => 'Text',
+            'attributes' => array(
+                'id' => 'cf-time-startweekend',
+                'style' => 'width: 80px;',
+            ),
+            'options' => array(
+                'label' => 'Time (Start Weekend)',
+                'postfix' => 'Clock',
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'cf-time-endweekend',
+            'type' => 'Text',
+            'attributes' => array(
+                'id' => 'cf-time-endweekend',
+                'style' => 'width: 80px;',
+            ),
+            'options' => array(
+                'label' => 'Time (End Weekend)',
                 'postfix' => 'Clock',
             ),
         ));
@@ -361,7 +387,7 @@ class EditForm extends Form
             'cf-name-visibility' => array(
                 'required' => false,
             ),
-            'cf-time-start' => array(
+            'cf-time-startweek' => array(
                 'filters' => array(
                     array('name' => 'StringTrim'),
                 ),
@@ -382,7 +408,49 @@ class EditForm extends Form
                     ),
                 ),
             ),
-            'cf-time-end' => array(
+            'cf-time-endweek' => array(
+                'filters' => array(
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name' => 'NotEmpty',
+                        'options' => array(
+                            'message' => 'Please type something here',
+                        ),
+                        'break_chain_on_failure' => true,
+                    ),
+                    array(
+                        'name' => 'Regex',
+                        'options' => array(
+                            'pattern' => '/^[0-9][0-9]:[0-9][0-9]$/',
+                            'message' => 'Please provide the time in format HH:MM',
+                        ),
+                    ),
+                ),
+            ),
+            'cf-time-startweekend' => array(
+                'filters' => array(
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name' => 'NotEmpty',
+                        'options' => array(
+                            'message' => 'Please type something here',
+                        ),
+                        'break_chain_on_failure' => true,
+                    ),
+                    array(
+                        'name' => 'Regex',
+                        'options' => array(
+                            'pattern' => '/^[0-9][0-9]:[0-9][0-9]$/',
+                            'message' => 'Please provide the time in format HH:MM',
+                        ),
+                    ),
+                ),
+            ),
+            'cf-time-endweekend' => array(
                 'filters' => array(
                     array('name' => 'StringTrim'),
                 ),
