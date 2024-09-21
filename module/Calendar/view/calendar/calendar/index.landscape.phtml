@@ -4,9 +4,12 @@
 
 
 <?php
-ini_set('memory_limit', '256M');
 
-print_r($this);
+var_dump($this->timeStart);
+var_dump($this->timeEnd);
+var_dump($this->dateStart);
+var_dump($this->timeEnd);
+
 
 $reservations = $this->get('reservations');
 $events = $this->get('events');
